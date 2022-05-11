@@ -22,6 +22,12 @@ body{
   align-items: center;
   justify-content: center;
 }
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 .main-big-text{
   font-size: 25vh;
   font-family: qiamast-font-face;
@@ -29,7 +35,14 @@ body{
   mix-blend-mode: difference;
   user-select: none;
 }
+.icons-container{
+  transform: scale(0.8);
+  display: flex;
+}
+.icons-container .fa{
+  margin-left: 10px;
+}
 .fa{
   color: #fff;
-  font-size: 15vh;
+  font-size: 10vh;
 }
