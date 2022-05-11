@@ -26,6 +26,8 @@ body{
   font-size: 25vh;
   font-family: qiamast-font-face;
   color: #fff;
+  mix-blend-mode: difference;
+  user-select: none;
 }
 .fa{
   color: #fff;
