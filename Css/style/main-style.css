@@ -1,0 +1,33 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: qiamast-font-face;
+  src: url('../../Assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf');
+}
+body{
+  background-color: rgba(0, 0, 0, 0);
+}
+.main-container{
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../Assets/image/Qiamast-Background-image.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-big-text{
+  font-size: 25vh;
+  font-family: qiamast-font-face;
+  color: #fff;
+}
+.fa{
+  color: #fff;
+  font-size: 20vh;
+}
