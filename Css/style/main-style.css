@@ -21,12 +21,14 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .content{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  
 }
 .main-big-text{
   font-size: 25vh;
@@ -34,6 +36,7 @@ body{
   color: #fff;
   mix-blend-mode: difference;
   user-select: none;
+  transition: all 0.4s;
 }
 
 .icons-container{
@@ -45,6 +48,7 @@ body{
   margin-left: 2vh;
   color: #fff;
   transition: all 0.2s ease-in;
+  cursor: pointer;
 
   
 }
