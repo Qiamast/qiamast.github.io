@@ -35,14 +35,19 @@ body{
   mix-blend-mode: difference;
   user-select: none;
 }
+
 .icons-container{
-  transform: scale(0.8);
   display: flex;
+
 }
 .icons-container .fa{
-  margin-left: 10px;
-}
-.fa{
+  font-size: 8vh;
+  margin-left: 2vh;
   color: #fff;
-  font-size: 10vh;
+  transition: all 0.2s ease-in;
+
+  
+}
+.icons-container .fa:hover{
+  transform: scale(1.1);
 }
