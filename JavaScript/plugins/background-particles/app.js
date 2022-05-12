@@ -1,29 +1,17 @@
-/* -----------------------------------------------
-/* How to use? : Check the GitHub README
-/* ----------------------------------------------- */
-
-/* To load a config file (particles.json) you need to host this demo (MAMP/WAMP/local)... */
-/*
-particlesJS.load('particles-js', 'particles.json', function() {
-  console.log('particles.js loaded - callback');
-});
-*/
-
-/* Otherwise just put the config content (json): */
 
 particlesJS('particles-js',
   
   {
     "particles": {
       "number": {
-        "value": 80,
+        "value": 100,
         "density": {
           "enable": true,
           "value_area": 800
         }
       },
       "color": {
-        "value": "#ffffff"
+        "value": "#10B7A5"
       },
       "shape": {
         "type": "circle",
@@ -35,19 +23,19 @@ particlesJS('particles-js',
           "nb_sides": 5
         },
         "image": {
-          "src": "img/github.svg",
+          "src": "../../../Assets/image/Planet_icon-icons.com_54153.ico",
           "width": 100,
           "height": 100
         }
       },
       "opacity": {
-        "value": 0.5,
-        "random": false,
+        "value": 0.8,
+        "random": true,
         "anim": {
           "enable": false,
           "speed": 1,
-          "opacity_min": 0.1,
-          "sync": false
+          "opacity_min": 0.4,
+          "sync": true
         }
       },
       "size": {
@@ -63,15 +51,15 @@ particlesJS('particles-js',
       "line_linked": {
         "enable": true,
         "distance": 150,
-        "color": "#ffffff",
-        "opacity": 0.4,
-        "width": 1
+        "color": "#10B7A5",
+        "opacity": 0.8,
+        "width": 1.4
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": 4,
         "direction": "none",
-        "random": false,
+        "random": true,
         "straight": false,
         "out_mode": "out",
         "attract": {
@@ -85,11 +73,11 @@ particlesJS('particles-js',
       "detect_on": "canvas",
       "events": {
         "onhover": {
-          "enable": true,
+          "enable": false,
           "mode": "repulse"
         },
         "onclick": {
-          "enable": true,
+          "enable": false,
           "mode": "push"
         },
         "resize": true
@@ -103,7 +91,7 @@ particlesJS('particles-js',
         },
         "bubble": {
           "distance": 400,
-          "size": 40,
+          "size": 50,
           "duration": 2,
           "opacity": 8,
           "speed": 3
