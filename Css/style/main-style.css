@@ -13,7 +13,7 @@ body{
 .main-container{
   width: 100%;
   height: 100vh;
-  background-image: url('../../Assets/image/Qiamast-Background-image.png');
+  background-image:url('../../Assets/image/Qiamast-Background-image.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,6 +22,7 @@ body{
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  
 }
 .content{
   display: flex;
@@ -38,6 +39,7 @@ body{
   mix-blend-mode: difference;
   user-select: none;
   transition: all 0.4s;
+  text-transform: capitalize;
 }
 
 .icons-container{
@@ -47,12 +49,12 @@ body{
 .icons-container .fa{
   font-size: 6vh;
   margin-left: 2vh;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   transition: all 0.2s ease-in;
   cursor: pointer;
 
   
 }
 .icons-container .fa:hover{
-  transform: scale(1.1);
+  color: rgba(255, 255, 255, 1);
 }
