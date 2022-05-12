@@ -1,1 +1,22 @@
+@media only screen and (max-width: 1000px) {
+  .content h1 {
+    font-size: 25vh;
+  }
+}
 
+@media only screen and (max-width: 390px) {
+  .content h1 {
+    font-size: 10vh;
+  }
+  .content .fa{
+    font-size: 5vh;
+  }
+}
+@media only screen and (min-width: 680px) {
+  .content h1 {
+    font-size: 15vh;
+  }
+  .content .fa{
+    font-size: 8vh;
+  }
+}
