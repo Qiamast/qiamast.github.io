@@ -1,5 +1,5 @@
 
-particlesJS('particles-js',
+particlesJS('qiamast-background-particles',
   
   {
     "particles": {
@@ -22,11 +22,6 @@ particlesJS('particles-js',
         "polygon": {
           "nb_sides": 5
         },
-        "image": {
-          "src": "../../../Assets/image/Planet_icon-icons.com_54153.ico",
-          "width": 100,
-          "height": 100
-        }
       },
       "opacity": {
         "value": 1,
