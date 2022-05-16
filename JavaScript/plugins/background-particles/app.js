@@ -11,7 +11,7 @@ particlesJS('qiamast-background-particles',
         }
       },
       "color": {
-        "value": "#10B7A5"
+        "value": "#0DC29B"
       },
       "shape": {
         "type": "circle",
@@ -22,15 +22,16 @@ particlesJS('qiamast-background-particles',
         "polygon": {
           "nb_sides": 5
         },
+        
       },
       "opacity": {
         "value": 1,
         "random": true,
         "anim": {
-          "enable": false,
+          "enable": true,
           "speed": 1,
-          "opacity_min": 0.5,
-          "sync": true
+          "opacity_min": 0.8,
+          "sync": false
         }
       },
       "size": {
@@ -38,7 +39,7 @@ particlesJS('qiamast-background-particles',
         "random": true,
         "anim": {
           "enable": false,
-          "speed": 50,
+          "speed": 40,
           "size_min": 0.1,
           "sync": false
         }
@@ -52,9 +53,9 @@ particlesJS('qiamast-background-particles',
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": 5,
         "direction": "none",
-        "random": false,
+        "random": true,
         "straight": false,
         "out_mode": "out",
         "attract": {
@@ -69,11 +70,11 @@ particlesJS('qiamast-background-particles',
       "events": {
         "onhover": {
           "enable": false,
-          "mode": "repulse"
+          "mode": "bubble"
         },
         "onclick": {
           "enable": false,
-          "mode": "push"
+          "mode": "remove"
         },
         "resize": true
       },
@@ -103,14 +104,6 @@ particlesJS('qiamast-background-particles',
       }
     },
     "retina_detect": true,
-    "config_demo": {
-      "hide_card": false,
-      "background_color": "#b61924",
-      "background_image": "",
-      "background_position": "50% 50%",
-      "background_repeat": "no-repeat",
-      "background_size": "cover"
-    }
   }
 
 );
