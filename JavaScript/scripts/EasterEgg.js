@@ -47,7 +47,7 @@ function setFavicon() {
 	// newIcon.setAttribute("href", canvas.toDataURL());
 	// favicon.parentNode.replaceChild(newIcon, favicon);
 	favicon.setAttribute("href", canvas.toDataURL());
-	history.replaceState(null, null, window.location.hash == "#1" ? "#0" : "#1");
+	history.replaceState(null, null, window.location.hash == "#1" ? "#false" : "#true");
 }
 
 // event handling
