@@ -28,7 +28,7 @@ function loadImages() {
 
 	} else {
 		start();
-		console.log("start");
+		console.log("Umm! i think Dino game started :)");
 	}
 }
 
@@ -47,7 +47,7 @@ function setFavicon() {
 	// newIcon.setAttribute("href", canvas.toDataURL());
 	// favicon.parentNode.replaceChild(newIcon, favicon);
 	favicon.setAttribute("href", canvas.toDataURL());
-	history.replaceState(null, null, window.location.hash == "#1" ? "#false" : "#true");
+	history.replaceState(null, null, window.location.hash == "#1" ? "#0" : "#hi-there-wellcome");
 }
 
 // event handling
@@ -260,7 +260,7 @@ function gameOverStart() {
 	// set and display high score
 	if (score > highScore) {
 		highScore = score;
-		document.title = `Qiamast | Dino High Score : ${highScore}`;
+		document.title = `Qiamast | 🦕 High Score : ${highScore}`;
 	}
 
 	if (spaceDown) {
