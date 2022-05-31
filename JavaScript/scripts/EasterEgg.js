@@ -1,0 +1,280 @@
+
+// create the canvas
+var canvas = document.createElement("CANVAS");
+var ctx = canvas.getContext("2d");
+canvas.width = 16;
+canvas.height = 16;
+
+// load game resources
+var images = [];
+
+// prepares an image to be loaded and returns the element
+function addImage(imgSrc) {
+	var newImg = new Image();
+	images.push({ img: newImg, src: imgSrc });
+	return newImg;
+}
+
+// load each image and then start the game loop
+function loadImages() {
+	if (images.length > 0) {
+
+		// load the first image in the array
+		images[0].img.onload = loadImages;
+		images[0].img.src = images[0].src;
+
+		// delete the first element of the array
+		images.shift();
+
+	} else {
+		start();
+		console.log("start");
+	}
+}
+
+// create image objects
+var dinoImage = addImage("../../Assets/image/easter-egg/dino.png");
+var cactiImage = addImage("../../Assets/image/easter-egg/cacti.png");
+var pressSpace = addImage("../../Assets/image/favicon.ico");
+var digits = addImage("../../Assets/image/easter-egg/digits.png");
+
+loadImages();
+
+// sets the favicon (duh)
+function setFavicon() {
+	var favicon = document.getElementById("favicon");
+	// var newIcon = favicon.cloneNode(true);
+	// newIcon.setAttribute("href", canvas.toDataURL());
+	// favicon.parentNode.replaceChild(newIcon, favicon);
+	favicon.setAttribute("href", canvas.toDataURL());
+	history.replaceState(null, null, window.location.hash == "#1" ? "#0" : "#1");
+}
+
+// event handling
+var spaceDown = false;
+window.addEventListener("keydown", function (event) {
+	// 32 = space
+	if (event.keyCode == 32) {
+		spaceDown = true;
+	}
+})
+window.addEventListener("keyup", function (event) {
+	// 32 = space
+	if (event.keyCode == 32) {
+		spaceDown = false;
+	}
+})
+
+// game state function
+var currentState = titleScreen;
+
+// game loop
+function start() {
+	// start the first game state
+	titleScreenStart();
+
+	// start the game loop
+	window.setInterval(function () {
+		currentState();
+		setFavicon();
+	}, 100);
+}
+
+// globals
+var highScore = 0;
+var score = 0;
+
+/* game states */
+
+// title screen
+var showPressSpace = true;
+var toggleSpaceInterval;
+function titleScreenToggleSpace() {
+	showPressSpace = !showPressSpace;
+}
+
+function titleScreenStart() {
+	toggleSpaceInterval = window.setInterval(titleScreenToggleSpace, 500);
+}
+
+function titleScreen() {
+	titleScreenUpdate();
+	titleScreenRender();
+}
+
+function titleScreenUpdate() {
+	if (spaceDown) {
+		titleScreenQuit();
+		currentState = game;
+		gameStart();
+	}
+}
+
+function titleScreenRender() {
+	// clear the canvas
+	ctx.fillStyle = "rgba(255, 255, 255, 0)";
+	ctx.fillRect(0, 0, 16, 16);
+
+	// draw game objects
+	if (showPressSpace) {
+		ctx.drawImage(pressSpace, 0, 0);
+	}
+	ctx.drawImage(dinoImage, 0, 12);
+}
+
+function titleScreenQuit() {
+	window.clearInterval(toggleSpaceInterval);
+}
+
+// game
+var dinoX = 8; // the tip of the dino's nose
+var dinoY = 0; // the bottom of the dino's feet (distance from bottom of icon)
+var yVel = 0.0;
+var xSpeed = 1.0;
+
+var cacti = []; // stores x pos and type of cacti
+
+function gameStart() {
+	yVel = 0.8;
+	dinoY = 0;
+	score = 0;
+	cacti.length = 0; // empty cacti array
+}
+
+function game() {
+	gameUpdate();
+	gameRender();
+}
+
+function gameUpdate() {
+
+	// create cacti
+	if (cacti.length > 0) {
+		if (cacti[cacti.length - 1].x < 16) {
+			// distance from the right edge of the icon from 32-64 pixels
+			var distance = Math.floor(Math.random() * 32) + 64;
+
+			// random cactus type from 1-2
+			var type = Math.floor(Math.random() * 2) + 1;
+
+			// make the cactus
+			cacti.push({ x: 16 + distance, type: type });
+		}
+	} else {
+		// make a new cactus if there are none
+		cacti.push({ x: 16, type: 0 });
+	}
+
+	// update cacti
+	for (var i = 0; i < cacti.length; i++) {
+
+		if (cacti[i].x < 4 && dinoY < 3) {
+			currentState = gameOver;
+			gameOverStart();
+			return; // exit the update function
+		} else {
+			cacti[i].x--;
+			if (cacti[i].x < -4) {
+				// remove the cactus if it has left the screen
+				cacti.splice(i, 1);
+			}
+		}
+	}
+
+	// update player
+	dinoY += yVel;
+	if (dinoY <= 0) {
+		dinoY = 0;
+		yVel = 0.0;
+	}
+
+	if (dinoY > 0) {
+		yVel -= 0.05;
+	} else {
+		if (spaceDown) {
+			yVel = 0.8;
+		}
+	}
+
+	// update the score
+	score++;
+	// set the title to score: score
+	document.title = `Qiamast | Dino > ${score}`;
+}
+
+function gameRender() {
+	// clear the canvas
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(0, 0, 16, 16);
+
+	// draw cacti
+	for (var i = 0; i < cacti.length; i++) {
+		var clipX;
+		var clipY = 0;
+		switch (cacti[i].type) {
+			case 1:
+				clipX = 0;
+				break;
+			case 2:
+				clipX = 5;
+				break;
+			default:
+				clipX = 0;
+				break;
+		}
+
+		ctx.drawImage(cactiImage, clipX, clipY, 5, 5, cacti[i].x, 11 /* 16 - 5 = 11 */, 5, 5);
+	}
+
+	// draw dino
+	ctx.drawImage(dinoImage, 0, 16 - (dinoY + 4));
+
+	// draw score
+	var scoreStr = score.toString();
+
+	// draw digits from largest to smallest
+	for (var i = 4; i-- > 0;) {
+		if (i > scoreStr.length - 1) {
+			// draw placeholder 0
+			var digitSheetPos = 0 * 4;
+			ctx.drawImage(digits, digitSheetPos, 0, 4, 5, 16 - ((i + 1) * 4), 0, 4, 5);
+		} else {
+			// get the current digit from the string
+			var digit = parseInt(scoreStr[(scoreStr.length - 1) - i]);
+
+			// draw current digit
+			var digitSheetPos = digit * 4;
+			ctx.drawImage(digits, digitSheetPos, 0, 4, 5, 16 - ((i + 1) * 4), 0, 4, 5);
+		}
+	}
+}
+
+function gameQuit() {
+	yVel = 0;
+}
+
+// game over
+var newSpacePress = true;
+function gameOverStart() {
+
+	// set and display high score
+	if (score > highScore) {
+		highScore = score;
+		document.title = `Qiamast | Dino High Score : ${highScore}`;
+	}
+
+	if (spaceDown) {
+		// prevent the game from starting over if space was already held down
+		newSpacePress = false;
+	}
+}
+
+function gameOver() {
+	// prevent the game from starting over if space was already held down
+	if (spaceDown && newSpacePress) {
+		currentState = game;
+		gameStart();
+	} else if (!spaceDown && !newSpacePress) {
+		newSpacePress = true;
+	}
+}
