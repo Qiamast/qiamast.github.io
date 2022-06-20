@@ -7,6 +7,10 @@
   vertical-align: baseline;
 
 }
+/* FIX : icon cursor palse */
+a {
+  cursor: default;
+}
 @font-face {
   font-family: qiamast-font-face;
   src: url('../../Assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf');
@@ -61,7 +65,6 @@ body{
   margin-left: 2vh;
   color: rgba(255, 255, 255, 0.8);
   transition: all 0.2s ease-in;
-  cursor: pointer;
 
   
 }
