@@ -73,6 +73,14 @@
     </div>
     <script src="./JavaScript/plugins/background-particles/particles.js"></script>
     <script src="./JavaScript/plugins/background-particles/app.js"></script>
-    <script src="./JavaScript/scripts/EasterEgg.js"></script>
+    <!-- <script src="./JavaScript/scripts/EasterEgg.js"></script> -->
+
+    <!-- FavIcon Dino easter egg not load at the small device -->
+    <script>
+      if (screen && screen.width > 400 || screen && screen.width > 568 ||screen && screen.width > 756 ||screen && screen.width > 992) {
+        document.write('<script type="text/javascript" src="./JavaScript/scripts/EasterEgg.js"><\/script>');
+      }
+      </script>
+      
   </body>
 </html>
